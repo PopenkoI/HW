@@ -67,10 +67,17 @@ public class MyFunction {
 
     public void HTTPError(final int code) {
         HTTPError[] errors = HTTPError.values();
+        boolean not_error = false;
         for (HTTPError er : errors) {
             if(code == er.getCode()) {
                 System.out.println(er);
+            }else {
+                not_error = true;
+
             }
+        }
+        if(not_error) {
+            System.out.println("This is not an HTTP error code");
         }
     }
 }

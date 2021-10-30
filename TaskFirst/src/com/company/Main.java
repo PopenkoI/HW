@@ -2,45 +2,31 @@ package com.company;
 
 import java.util.Scanner;
 
+import static java.lang.Integer.*;
+
 public class Main {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        int a = 0;
         System.out.print("Input a: ");
-        int a = in.nextInt();
-        while (a <= 0) {
-            System.out.println("a must be positive!");
-            System.out.print("Input positive a: ");
-            a = in.nextInt();
-        }
+        a = check_input(a);
+
+        int b = 0;
         System.out.print("Input b: ");
-        int b = in.nextInt();
-        while (b <= 0) {
-            System.out.println("b must be positive!");
-            System.out.print("Input positive b: ");
-            b = in.nextInt();
-        }
+        b = check_input(b);
+
+        int c = 0;
         System.out.print("Input c: ");
-        int c = in.nextInt();
-        while (c <= 0) {
-            System.out.println("c must be positive!");
-            System.out.print("Input positive c: ");
-            c = in.nextInt();
-        }
+        c = check_input(c);
+
+        int x = 0;
         System.out.print("Input x: ");
-        int x = in.nextInt();
-        while (x <= 0) {
-            System.out.println("x must be positive!");
-            System.out.print("Input positive x: ");
-            x = in.nextInt();
-        }
+        x = check_input(x);
+
+        int y = 0;
         System.out.print("Input y: ");
-        int y = in.nextInt();
-        while (y <= 0) {
-            System.out.println("y must be positive!");
-            System.out.print("Input positive y: ");
-            y = in.nextInt();
-        }
+        y = check_input(y);
+
 
         if ((x >= a && y >= b) || (x >= b && y >= a)) {
             System.out.println("The brick will pass");
@@ -53,6 +39,37 @@ public class Main {
             System.out.println("The brick will not pass");
         }
 
-        in.close();
     }
+
+    static int check_number_greater_then_zero(int number) {
+        Scanner in_temp = new Scanner(System.in);
+        while (number <= 0) {
+            while (true) {
+                try {
+                    System.out.println("Value must be positive!");
+                    System.out.print("Input positive value: ");
+                    number = Integer.parseInt(in_temp.nextLine().trim());
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Input error! Please enter a number.");
+                }
+            }
+        }
+        return number;
+    }
+
+    static int check_input(int number) {
+        Scanner in_temp = new Scanner(System.in);
+        while (true) {
+            try {
+                number = Integer.parseInt(in_temp.nextLine().trim());
+                number = check_number_greater_then_zero(number);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Input error! Please enter a number.");
+            }
+        }
+        return number;
+    }
+
 }
