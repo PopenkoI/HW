@@ -1,7 +1,6 @@
 package com.company;
 
-public class SalariedEmployee extends Employee implements CalculatePay
-{
+public class SalariedEmployee extends Employee implements CalculatePay {
     private String socialSecurityNumber;
     private float fixed_monthly_payment;
 

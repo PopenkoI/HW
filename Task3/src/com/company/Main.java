@@ -12,9 +12,7 @@ public class Main {
         System.out.print("Input flower bad radius: ");
         Scanner in = new Scanner(System.in);
 
-        float r;
-        r = check_input();
-
+        float r = inputFloatNumber();
         double perimeter = 2 * r * Math.PI;
         double area = r * r * Math.PI;
 
@@ -24,35 +22,31 @@ public class Main {
         //////////////////////////2)/////////////////////////////
         System.out.println();
 
-
         System.out.print("What is your name? ");
-        String name = in.nextLine();
-        name = check_input_string(name);
+        String name = inputString();
 
         System.out.print("Where are you live, " + name + "? ");
-        String address = in.nextLine();
-        address = check_input_string(address);
+        String address = inputString();
 
         System.out.print("Your name is " + name);
         System.out.println(" and you live in " + address);
-
 
         //////////////////////////3)/////////////////////////////
         System.out.println();
 
         System.out.print("Roaming in the first country is ");
-        float c1 = check_input();
+        float c1 = inputFloatNumber();
         System.out.print("Roaming in the second country is ");
-        float c2 = check_input();
+        float c2 = inputFloatNumber();
         System.out.print("Roaming in the third country is ");
-        float c3 = check_input();
+        float c3 = inputFloatNumber();
 
         System.out.print("Time of the first call is ");
-        float t1 = check_input();
+        float t1 = inputFloatNumber();
         System.out.print("Time of the second call is ");
-        float t2 = check_input();
+        float t2 = inputFloatNumber();
         System.out.print("Time of the third call is ");
-        float t3 = check_input();
+        float t3 = inputFloatNumber();
 
         float result1 = c1 * t1;
         float result2 = c2 * t2;
@@ -67,14 +61,14 @@ public class Main {
     }
 
 
-    static float check_number_greater_then_zero(float number) {
+    static float checkNumberGreaterThenZero(float number) {
         Scanner in_temp = new Scanner(System.in);
         while (number <= 0) {
             while (true) {
                 try {
                     System.out.println("Value must be positive!");
                     System.out.print("Input positive value: ");
-                    number = Integer.parseInt(in_temp.nextLine().trim());
+                    number = Float.parseFloat(in_temp.nextLine().trim().replace(",", "."));
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Input error! Please enter a number.");
@@ -84,13 +78,13 @@ public class Main {
         return number;
     }
 
-    static float check_input() {
+    static float inputFloatNumber() {
         Scanner in_temp = new Scanner(System.in);
         float number;
         while (true) {
             try {
-                number = Integer.parseInt(in_temp.nextLine().trim());
-                number = check_number_greater_then_zero(number);
+                number = Float.parseFloat(in_temp.nextLine().trim().replace(",", "."));
+                number = checkNumberGreaterThenZero(number);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Input error! Please enter a number.");
@@ -99,15 +93,16 @@ public class Main {
         return number;
     }
 
-    static String check_input_string(String str){
+    static String inputString(){
         Scanner in_temp = new Scanner(System.in);
-        String pattern;
-        pattern = "([\\s|a-z|A-Z])+";
+        String str = in_temp.nextLine();
+
+        String pattern = "([\\s|a-zA-Z])+";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(str);
 
         while(!m.matches()){
-            System.out.print("Input error! Please enter the letters of the English alphabet. ");
+            System.out.print("Input error! Please enter only the letters of the English alphabet. ");
             str = in_temp.nextLine();
             m = p.matcher(str);
         }

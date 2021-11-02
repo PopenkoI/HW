@@ -1,6 +1,6 @@
 package com.company;
 
-public class Employee implements CalculatePay{
+public class Employee implements CalculatePay {
     private String name;
     private String employeeId;
 
@@ -33,7 +33,7 @@ public class Employee implements CalculatePay{
         return 0;
     }
 
-    public void output(){
+    public void output() {
         System.out.println("Name: " + this.name + " ID: " + this.employeeId);
         System.out.println("Average Monthly wage:  " + this.calculatePay());
     }

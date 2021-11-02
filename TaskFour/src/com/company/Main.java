@@ -8,7 +8,7 @@ public class Main {
 
         Person pers2 = new Person("Tom", 1973);
         pers2.output();
-        System.out.println("Age " + pers2.age());
+        System.out.println("Age " + pers2.calculateAge());
 
         Person pers3 = new Person();
         pers3.setName("Vira");
@@ -24,4 +24,6 @@ public class Main {
         pers5.changeName("Victor");
         pers5.output();
     }
+
+
 }

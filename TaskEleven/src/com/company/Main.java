@@ -25,13 +25,13 @@ public class Main {
             System.out.println(person);
         }
 
-        students.sort(new SortedByName());
+        students.sort(new sortedByName());
         System.out.println("\n~~~ Сортування по імені");
 
         for (Student product : students)
             System.out.println(product.toString());
 
-        students.sort(new SortedByCourse());
+        students.sort(new sortedByCourse());
         System.out.println("\n~~~ Сортування по курсах");
 
         for (Student product : students)

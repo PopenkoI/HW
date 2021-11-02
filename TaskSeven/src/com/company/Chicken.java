@@ -6,7 +6,7 @@ public class Chicken extends NotFlyingBird
         super(feathers, layEggs);
     }
 
-    @Override
+
     public void output() {
         System.out.println("Chicken have feathers " + this.getFeathers() + " in length.");
         System.out.println("Also this bird " + this.getLayEggs() + " lay eggs.");

@@ -6,28 +6,27 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-            double num1,num2;
-            while (true) {
-                try {
-                    System.out.print("Input first double number: ");
-                    num1 = Double.parseDouble(in.nextLine().trim().replace(",", "."));
-                    System.out.print("Input second double number: ");
-                    num2 = Double.parseDouble(in.nextLine().trim().replace(",", "."));
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("Input error! Please enter a number.");
-                }
+        double num1, num2;
+        while (true) {
+            try {
+                System.out.print("Input first double number: ");
+                num1 = Double.parseDouble(in.nextLine().trim().replace(",", "."));
+                System.out.print("Input second double number: ");
+                num2 = Double.parseDouble(in.nextLine().trim().replace(",", "."));
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Input error! Please enter a number.");
             }
-
-        try{
-            double result1 = div(num1,num2);
-            System.out.println(result1);
         }
-        catch(Exception ex){
+
+        try {
+            double result1 = div(num1, num2);
+            System.out.println(result1);
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
-        main();
+        mainFromTask();
     }
 
     static double div(double num1, double num2) throws Exception {
@@ -52,8 +51,8 @@ public class Main {
         return number;
     }
 
-    static void main(){
-        int number, num_next = 1;
+    static void mainFromTask() {
+        int num_next = 1;
         int arr[] = new int[10];
 
         for (int i = 0; i < arr.length; ++i) {
@@ -65,7 +64,6 @@ public class Main {
                     System.out.println(ex.getMessage());
                 }
             }
-
         }
 
         for (int j = 0; j < arr.length - 1; ++j) {

@@ -6,21 +6,24 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.print("Input n: ");
-        int n = check_input();
+        int n = inputNumber();
 
         int n2 = n * n;
         System.out.println("n^2 = " + n2);
         ///////////////////////////////a)////////////////////////////////////
-        boolean included = false;
-        while ((n2 != 0) && (!included)) {
-            if (n2 % 10 == 3) included = true;
+        boolean includedNumber3 = false;
+        while ((n2 != 0) && (!includedNumber3)) {
+            if (n2 % 10 == 3) {
+                includedNumber3 = true;
+            }
             n2 = n2 / 10;
         }
 
-        if (included)
+        if (includedNumber3) {
             System.out.println("a) 3 included");
-        else
+        } else {
             System.out.println("a) 3 not included");
+        }
 
         //////////////////////////////b)///////////////////////////////////////
         int revers_n = 0, temp, copy_n = n;
@@ -38,7 +41,7 @@ public class Main {
         while (copy_n > 9) {
             begin_n *= 10;
             middle_n += (copy_n % 10) * position;
-            position *= 10;//10  100
+            position *= 10;
             copy_n /= 10;
         }
         copy_n = (begin_n * 10) + (middle_n * 10) + copy_n;
@@ -54,7 +57,7 @@ public class Main {
         System.out.println("d) " + result);
     }
 
-    static int check_number_greater_then_zero(int number) {
+    static int checkNumberGreaterThenZero(int number) {
         Scanner in_temp = new Scanner(System.in);
         while (number <= 0) {
             while (true) {
@@ -71,13 +74,13 @@ public class Main {
         return number;
     }
 
-    static int check_input() {
+    static int inputNumber() {
         Scanner in_temp = new Scanner(System.in);
         int number;
         while (true) {
             try {
                 number = Integer.parseInt(in_temp.nextLine().trim());
-                number = check_number_greater_then_zero(number);
+                number = checkNumberGreaterThenZero(number);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Input error! Please enter a number.");
@@ -85,6 +88,5 @@ public class Main {
         }
         return number;
     }
-
 
 }

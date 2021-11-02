@@ -1,6 +1,6 @@
 package com.company;
 
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,99 +8,79 @@ public class Main {
 
     public static void main(String[] args) {
         MyFunction func = new MyFunction();
-        Scanner in = new Scanner(System.in);
 
         /////////////////////////////1.1/////////////////////////////////
-
         System.out.print("Input first float number ");
-        float num1 = check_input_float();
-
+        float num1 = inputFloatNumber();
         System.out.print("Input second float number ");
-        float num2 = check_input_float();
-
+        float num2 = inputFloatNumber();
         System.out.print("Input third float number ");
-        float num3 = check_input_float();
+        float num3 = inputFloatNumber();
 
         func.allBelongToRangeOrNot(num1, num2, num3);
 
         /////////////////////////////1.2/////////////////////////////////
-
         System.out.print("Input first integer number ");
-        int number1 = check_input_int();
-
+        int number1 = inputIntegerNumber();
         System.out.print("Input second integer number ");
-        int number2 = check_input_int();
-
+        int number2 = inputIntegerNumber();
         System.out.print("Input third integer number ");
-        int number3 = check_input_int();
+        int number3 = inputIntegerNumber();
 
         if (number1 == number2 && number2 == number3) {
             System.out.println("min and max equal = " + number1);
         }
 
-        func.maxOfThreeNumbers(number1, number2, number3);
-        func.minOfThreeNumbers(number1, number2, number3);
+        System.out.println("max = " + func.maxOfThreeNumbers(number1, number2, number3));
+        System.out.println("min = " + func.minOfThreeNumbers(number1, number2, number3));
 
         /////////////////////////////1.3/////////////////////////////////
-
-        System.out.print("Input code");
-        int code = check_input_int();
+        System.out.print("Input code ");
+        int code = inputIntegerNumber();
         func.HTTPError(code);
 
         /////////////////////////////2/////////////////////////////////
-
         Dog dog1 = new Dog("Tom", Breeds.CORGI, 6);
         Dog dog2 = new Dog("Gigi", Breeds.POODLE, 4);
         Dog dog3 = new Dog("Gigi", Breeds.GOLDEN_RETRIEVER, 7);
 
-        String new_name;
-        if (dog1.getName().equals(dog2.getName())) {
-            System.out.println("Please change the name of the dog, " + dog2.getName() + " with age " + dog2.getAge() + " there is already a dog with that name. New name: ");
-            new_name = in.next();
-            new_name = check_input_string(new_name);
-            dog2.setName(new_name);
-        } else if (dog2.getName().equals(dog3.getName())) {
-            System.out.println("Please change the name of the dog, " + dog3.getName() + " with age " + dog3.getAge() + " there is already a dog with that name. New name: ");
-            new_name = in.next();
-            new_name = check_input_string(new_name);
-            dog3.setName(new_name);
-        } else if (dog3.getName().equals(dog1.getName())) {
-            System.out.println("Please change the name of the dog, " + dog3.getName() + " with age " + dog3.getAge() + " there is already a dog with that name. New name: ");
-            new_name = in.next();
-            new_name = check_input_string(new_name);
-            dog3.setName(new_name);
+        List<Dog> dogs = new ArrayList<>();
+        dogs.add(dog1);
+        dogs.add(dog2);
+        dogs.add(dog3);
+
+        for (int i = 0; i < dogs.size(); ++i) {
+            for (int j = i + 1; j < dogs.size(); ++j) {
+                if (dogs.get(i).getName().equals(dogs.get(j).getName())) {
+                    System.out.println("Please change the name of the dog, " + dogs.get(j).getName() + " with age " + dogs.get(j).getAge() + " there is already a dog with that name. New name: ");
+                    String new_name = inputString();
+                    dogs.get(j).setName(new_name);
+                }
+            }
         }
 
-        if (dog1.getAge() > dog2.getAge() && dog1.getAge() > dog3.getAge()) {
-            dog1.output();
-        } else if (dog2.getAge() > dog1.getAge() && dog2.getAge() > dog3.getAge()) {
-            dog2.output();
-        } else if (dog3.getAge() > dog1.getAge() && dog3.getAge() > dog1.getAge()) {
-            dog3.output();
+        int maxAge = dogs.get(0).getAge();
+        for (Dog dog : dogs) {
+            if (maxAge < dog.getAge()) {
+                maxAge = dog.getAge();
+            }
         }
-
-        if (dog1.getAge() == dog2.getAge() && dog1.getAge() > dog3.getAge()) {
-            dog1.output();
-            dog2.output();
-        } else if (dog2.getAge() == dog3.getAge() && dog2.getAge() > dog1.getAge()) {
-            dog2.output();
-            dog3.output();
-        } else if (dog3.getAge() == dog1.getAge() && dog3.getAge() > dog2.getAge()) {
-            dog1.output();
-            dog3.output();
+        for (Dog dog : dogs) {
+            if (maxAge == dog.getAge()) {
+                dog.output();
+            }
         }
 
     }
 
-
-    static float check_number_greater_then_zero(float number) {
+    static float checkNumberGreaterThenZeroFloat(float number) {
         Scanner in_temp = new Scanner(System.in);
         while (number <= 0) {
             while (true) {
                 try {
                     System.out.println("Value must be positive!");
                     System.out.print("Input positive value: ");
-                    number = Integer.parseInt(in_temp.nextLine().trim());
+                    number = Float.parseFloat(in_temp.nextLine().trim().replace(",", "."));
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Input error! Please enter a number.");
@@ -110,13 +90,13 @@ public class Main {
         return number;
     }
 
-    static float check_input_float() {
+    static float inputFloatNumber() {
         Scanner in_temp = new Scanner(System.in);
         float number;
         while (true) {
             try {
-                number = Integer.parseInt(in_temp.nextLine().trim());
-                number = check_number_greater_then_zero(number);
+                number = Float.parseFloat(in_temp.nextLine().trim().replace(",", "."));
+                number = checkNumberGreaterThenZeroFloat(number);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Input error! Please enter a number.");
@@ -125,7 +105,7 @@ public class Main {
         return number;
     }
 
-    static int check_number_greater_then_zero_int(int number) {
+    static int checkNumberGreaterThenZeroInt(int number) {
         Scanner in_temp = new Scanner(System.in);
         while (number <= 0) {
             while (true) {
@@ -142,13 +122,13 @@ public class Main {
         return number;
     }
 
-    static int check_input_int() {
+    static int inputIntegerNumber() {
         Scanner in_temp = new Scanner(System.in);
         int number;
         while (true) {
             try {
                 number = Integer.parseInt(in_temp.nextLine().trim());
-                number = check_number_greater_then_zero_int(number);
+                number = checkNumberGreaterThenZeroInt(number);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Input error! Please enter a number.");
@@ -157,15 +137,16 @@ public class Main {
         return number;
     }
 
-    static String check_input_string(String str){
+    static String inputString() {
         Scanner in_temp = new Scanner(System.in);
-        String pattern;
-        pattern = "([\\s|a-z|A-Z])+";
+        String str = in_temp.nextLine();
+
+        String pattern = "([\\s|a-zA-Z])+";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(str);
 
-        while(!m.matches()){
-            System.out.print("Input error! Please enter the letters of the English alphabet. ");
+        while (!m.matches()) {
+            System.out.print("Input error! Please enter only the letters of the English alphabet. ");
             str = in_temp.nextLine();
             m = p.matcher(str);
         }

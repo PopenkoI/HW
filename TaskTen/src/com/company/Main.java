@@ -37,23 +37,23 @@ public class Main {
             System.out.printf("Last name: %s  First name: %s \n", item.getKey(), item.getValue());
         }
 
-        boolean is = false;
-        Map<String, String> personIs = new HashMap<String, String>();
+        boolean peopleWithTheSameName = false;
+        Map<String, String> mapPeopleWithTheSameName = new HashMap<String, String>();
 
         for (Map.Entry<String, String> item : personMap.entrySet()) {
             for (Map.Entry<String, String> item2 : personMap.entrySet()) {
                 if (item.getValue().equals(item2.getValue()) && !(item.getKey().equals(item2.getKey()))) {
-                    personIs.put(item.getKey(), item.getValue());
-                    personIs.put(item2.getKey(), item2.getValue());
-                    is = true;
+                    mapPeopleWithTheSameName.put(item.getKey(), item.getValue());
+                    mapPeopleWithTheSameName.put(item2.getKey(), item2.getValue());
+                    peopleWithTheSameName = true;
                 }
             }
         }
 
-        if (is) {
+        if (peopleWithTheSameName) {
             System.out.println();
             System.out.println("People with the same first name:");
-            for (Map.Entry<String, String> item : personIs.entrySet()) {
+            for (Map.Entry<String, String> item : mapPeopleWithTheSameName.entrySet()) {
                 System.out.printf("Last name: %s  First name: %s \n", item.getKey(), item.getValue());
             }
         } else {

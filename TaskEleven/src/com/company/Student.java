@@ -71,13 +71,13 @@ public class Student {
     }
 }
 
-class SortedByName implements Comparator<Student> {
+class sortedByName implements Comparator<Student> {
     public int compare(Student obj1, Student obj2) {
         return obj1.compareByName(obj2);
     }
 }
 
-class SortedByCourse implements Comparator<Student> {
+class sortedByCourse implements Comparator<Student> {
     public int compare(Student obj1, Student obj2) {
         return  obj1.compareByCourse(obj2);
     }

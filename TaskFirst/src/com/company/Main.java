@@ -2,30 +2,23 @@ package com.company;
 
 import java.util.Scanner;
 
-import static java.lang.Integer.*;
-
 public class Main {
 
     public static void main(String[] args) {
-        int a = 0;
         System.out.print("Input a: ");
-        a = check_input(a);
+        int a = inputNumber();
 
-        int b = 0;
         System.out.print("Input b: ");
-        b = check_input(b);
+        int b = inputNumber();
 
-        int c = 0;
         System.out.print("Input c: ");
-        c = check_input(c);
+        int c = inputNumber();
 
-        int x = 0;
         System.out.print("Input x: ");
-        x = check_input(x);
+        int x = inputNumber();
 
-        int y = 0;
         System.out.print("Input y: ");
-        y = check_input(y);
+        int y = inputNumber();
 
 
         if ((x >= a && y >= b) || (x >= b && y >= a)) {
@@ -41,7 +34,7 @@ public class Main {
 
     }
 
-    static int check_number_greater_then_zero(int number) {
+    static int checkNumberGreaterThenZero(int number) {
         Scanner in_temp = new Scanner(System.in);
         while (number <= 0) {
             while (true) {
@@ -58,12 +51,13 @@ public class Main {
         return number;
     }
 
-    static int check_input(int number) {
+    static int inputNumber() {
         Scanner in_temp = new Scanner(System.in);
+        int number;
         while (true) {
             try {
                 number = Integer.parseInt(in_temp.nextLine().trim());
-                number = check_number_greater_then_zero(number);
+                number = checkNumberGreaterThenZero(number);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Input error! Please enter a number.");
